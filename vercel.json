@@ -1,6 +1,30 @@
 {
   "functions": {
-    "api/**/*.php": {
+    "api/auth/login.php": {
+      "runtime": "vercel-php@0.7.0"
+    },
+    "api/auth/logout.php": {
+      "runtime": "vercel-php@0.7.0"
+    },
+    "api/auth/register.php": {
+      "runtime": "vercel-php@0.7.0"
+    },
+    "api/booking/process_booking.php": {
+      "runtime": "vercel-php@0.7.0"
+    },
+    "api/booking/procees_booking_activities.php": {
+      "runtime": "vercel-php@0.7.0"
+    },
+    "api/contact/process_contact.php": {
+      "runtime": "vercel-php@0.7.0"
+    },
+    "api/get_items.php": {
+      "runtime": "vercel-php@0.7.0"
+    },
+    "api/process_activity_booking.php": {
+      "runtime": "vercel-php@0.7.0"
+    },
+    "api/process_contact.php": {
       "runtime": "vercel-php@0.7.0"
     }
   },
