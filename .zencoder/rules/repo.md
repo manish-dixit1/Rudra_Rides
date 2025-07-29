@@ -82,37 +82,44 @@ vercel
 - `DB_NAME` - Database name (default: rudra_rides)
 
 **Vercel Configuration**:
-The project uses a specific Vercel configuration for PHP serverless functions:
+The project uses Vercel's version 2 configuration format with explicit builds for each PHP file:
 
 ```json
 {
-  "buildCommand": "echo 'No build step'",
-  "outputDirectory": ".",
-  "framework": null,
-  "functions": {
-    "api/**/*.php": {
-      "runtime": "vercel-php@0.7.0"
-    }
-  },
+  "version": 2,
+  "builds": [
+    { "src": "api/auth/login.php", "use": "vercel-php@0.7.0" },
+    { "src": "api/auth/logout.php", "use": "vercel-php@0.7.0" },
+    { "src": "api/auth/register.php", "use": "vercel-php@0.7.0" },
+    { "src": "api/booking/procees_booking_activities.php", "use": "vercel-php@0.7.0" },
+    { "src": "api/booking/process_booking.php", "use": "vercel-php@0.7.0" },
+    { "src": "api/contact/process_contact.php", "use": "vercel-php@0.7.0" },
+    { "src": "api/get_items.php", "use": "vercel-php@0.7.0" },
+    { "src": "api/process_activity_booking.php", "use": "vercel-php@0.7.0" },
+    { "src": "api/process_contact.php", "use": "vercel-php@0.7.0" },
+    { "src": "*.html", "use": "@vercel/static" },
+    { "src": "*.css", "use": "@vercel/static" },
+    { "src": "*.js", "use": "@vercel/static" },
+    { "src": "images/*", "use": "@vercel/static" }
+  ],
   "routes": [
-    { "src": "/api/(.*)\\.php", "dest": "/api/$1.php" },
-    { "src": "/(.*)\\.html", "dest": "/$1.html" },
-    { "src": "/(.*)\\.css", "dest": "/$1.css" },
-    { "src": "/(.*)\\.js", "dest": "/$1.js" },
-    { "src": "/images/(.*)", "dest": "/images/$1" },
-    { "src": "/(.*)", "dest": "/index.html" }
+    { "src": "/api/auth/(.*)", "dest": "/api/auth/$1" },
+    { "src": "/api/booking/(.*)", "dest": "/api/booking/$1" },
+    { "src": "/api/contact/(.*)", "dest": "/api/contact/$1" },
+    { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/(.*)", "dest": "/$1" }
   ]
 }
 ```
 
 ## Troubleshooting Deployment
 If you encounter the "invalid runtime" error during deployment:
-1. Ensure your vercel.json uses the pattern `api/**/*.php` to catch all PHP files
-2. Add `"buildCommand": "echo 'No build step'"` and `"outputDirectory": "."` to prevent build issues
-3. Set `"framework": null` to ensure Vercel doesn't try to auto-detect the framework
-4. Create a `.vercelignore` file to exclude unnecessary files
-5. Create a `.gitattributes` file to ensure proper line endings for PHP files
-6. Add a `vercel.php` file in the root directory to help identify the project as PHP
+1. Use Vercel's version 2 configuration format with explicit `builds` array
+2. Specify each PHP file individually with `"use": "vercel-php@0.7.0"`
+3. Define static assets with `"use": "@vercel/static"`
+4. Create proper routing rules for each API endpoint
+5. Create a `.vercelignore` file to exclude unnecessary files
+6. Create a `.gitattributes` file to ensure proper line endings for PHP files
 7. Verify all PHP files start with `<?php` tag
 8. Check that environment variables are properly configured in Vercel dashboard
 

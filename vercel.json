@@ -1,18 +1,25 @@
 {
-  "buildCommand": "echo 'No build step'",
-  "outputDirectory": ".",
-  "framework": null,
-  "functions": {
-    "api/**/*.php": {
-      "runtime": "vercel-php@0.7.0"
-    }
-  },
+  "version": 2,
+  "builds": [
+    { "src": "api/auth/login.php", "use": "vercel-php@0.7.0" },
+    { "src": "api/auth/logout.php", "use": "vercel-php@0.7.0" },
+    { "src": "api/auth/register.php", "use": "vercel-php@0.7.0" },
+    { "src": "api/booking/procees_booking_activities.php", "use": "vercel-php@0.7.0" },
+    { "src": "api/booking/process_booking.php", "use": "vercel-php@0.7.0" },
+    { "src": "api/contact/process_contact.php", "use": "vercel-php@0.7.0" },
+    { "src": "api/get_items.php", "use": "vercel-php@0.7.0" },
+    { "src": "api/process_activity_booking.php", "use": "vercel-php@0.7.0" },
+    { "src": "api/process_contact.php", "use": "vercel-php@0.7.0" },
+    { "src": "*.html", "use": "@vercel/static" },
+    { "src": "*.css", "use": "@vercel/static" },
+    { "src": "*.js", "use": "@vercel/static" },
+    { "src": "images/*", "use": "@vercel/static" }
+  ],
   "routes": [
-    { "src": "/api/(.*)\\.php", "dest": "/api/$1.php" },
-    { "src": "/(.*)\\.html", "dest": "/$1.html" },
-    { "src": "/(.*)\\.css", "dest": "/$1.css" },
-    { "src": "/(.*)\\.js", "dest": "/$1.js" },
-    { "src": "/images/(.*)", "dest": "/images/$1" },
-    { "src": "/(.*)", "dest": "/index.html" }
+    { "src": "/api/auth/(.*)", "dest": "/api/auth/$1" },
+    { "src": "/api/booking/(.*)", "dest": "/api/booking/$1" },
+    { "src": "/api/contact/(.*)", "dest": "/api/contact/$1" },
+    { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/(.*)", "dest": "/$1" }
   ]
 }
