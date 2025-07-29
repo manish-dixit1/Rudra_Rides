@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ . '/config/db.php');
+require_once(__DIR__ . '/../includes/db.php');
 // Show all errors (for development)
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
