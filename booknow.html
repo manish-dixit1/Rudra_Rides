@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rudra Rides - Booking Form</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/6558443b63.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="images/logo.jpeg" alt="Himachal Pradesh"></a>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="destinations.html">Destinations</a></li>
+                <li><a href="hotels.html">Hotels</a></li>
+                <li><a href="activities.html">Activities</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="signup.html" class="sign-in-btn" title="Sign Up">
+            <i class="fas fa-user"></i>
+        </a>
+    </header>
+
+    <section class="booking-form">
+        <h2>Book Your Journey</h2> 
+       
+        <form action="booking/process_booking.php" method="POST">
+            <div class="form-group">
+                <label for="fullname">Full Name:</label>
+                <input type="text" id="fullname" name="fullname" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+
+            <div class="form-group">
+                <label for="booking_type">Booking Type:</label>
+                <select id="booking_type" name="booking_type" required>
+                    <option value="">Select Type</option>
+                    <option value="hotel">Hotel</option>
+                    <option value="activity">Activity</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="reference_id">Select Item:</label>
+                <select id="reference_id" name="reference_id" required>
+                    <option value="">Select First</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="destination">Destination:</label>
+                <input type="text" id="destination" name="destination" required>
+            </div>
+
+            <div class="form-group">
+                <label for="date">Travel Date:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="people">Number of People:</label>
+                <input type="number" id="people" name="people" min="1" required>
+            </div>
+
+            <button type="submit" class="btn">Submit Booking</button>
+        </form>
+    </section>
+
+    <section class="thank-you">
+        <p>Thank you for choosing <strong>Rudra Rides</strong>. We're thrilled to be part of your next adventure. Let's make it unforgettable!</p>
+    </section>
+
+    <script>
+        // Dynamic loading of hotels/activities based on booking type
+        document.getElementById('booking_type').addEventListener('change', function() {
+            const bookingType = this.value;
+            const referenceSelect = document.getElementById('reference_id');
+            referenceSelect.innerHTML = '<option value="">Loading...</option>';
+
+            if (bookingType) {
+                fetch(`get_items.php?type=${bookingType}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        referenceSelect.innerHTML = '<option value="">Select ' + 
+                            (bookingType === 'hotel' ? 'Hotel' : 'Activity') + '</option>';
+                        data.forEach(item => {
+                            const option = document.createElement('option');
+                            option.value = item.id;
+                            option.textContent = item.name;
+                            referenceSelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        referenceSelect.innerHTML = '<option value="">Error loading items</option>';
+                    });
+            } else {
+                referenceSelect.innerHTML = '<option value="">Select First</option>';
+            }
+        });
+    </script>
+</body>
+</html>

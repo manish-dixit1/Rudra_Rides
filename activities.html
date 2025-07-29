@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activities - Rudra Rides</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/6558443b63.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="images/logo.jpeg" alt="Himachal Pradesh"></a>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="destinations.html">Destinations</a></li>
+                <li><a href="hotels.html">Hotels</a></li>
+                <li><a href="activities.html">Activities</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="signup.html" class="sign-in-btn" title="Sign Up">
+            <i class="fas fa-user"></i>
+        </a>
+    </header>
+
+    <main>
+        <section class="hero activity-hero">
+            <div class="hero-image">
+                <img src="images/activity1.jpg" alt="Adventure Activities">
+            </div>
+            <div class="hero-content">
+                <h1>Adventure Awaits</h1>
+                <p>Experience thrilling activities in the heart of Himalayas</p>
+                <a href="#book-activity" class="hero-button">Book Activities</a>
+            </div>
+        </section>
+
+        <section class="activities-section">
+            <h2>Popular Activities</h2>
+            <div class="activities-grid">
+                <div class="activity-card">
+                    <img src="images/activity1.jpg" alt="Paragliding">
+                    <div class="activity-info">
+                        <h3>Paragliding</h3>
+                        <div class="activity-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="activity-location"><i class="fas fa-map-marker-alt"></i> Bir Billing, Himachal Pradesh</p>
+                        <p class="activity-description">Experience the thrill of flying over the majestic Himalayas with our expert guides. Perfect for adventure seekers and nature lovers.</p>
+                        <div class="activity-details">
+                            <span><i class="far fa-clock"></i> 15-20 mins</span>
+                            <span><i class="fas fa-rupee-sign"></i> 2500/person</span>
+                        </div>
+                        <a href="#book-activity" class="book-now-btn" data-activity="paragliding">Book Now</a>
+                    </div>
+                </div>
+
+                <div class="activity-card">
+                    <img src="images/activity2.jpg" alt="Trekking">
+                    <div class="activity-info">
+                        <h3>Trekking</h3>
+                        <div class="activity-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="activity-location"><i class="fas fa-map-marker-alt"></i> Various Locations</p>
+                        <p class="activity-description">Explore the hidden trails of Himalayas with our experienced trekking guides. Choose from easy to challenging routes.</p>
+                        <div class="activity-details">
+                            <span><i class="far fa-clock"></i> 1-5 days</span>
+                            <span><i class="fas fa-rupee-sign"></i> From 1500/day</span>
+                        </div>
+                        <a href="#book-activity" class="book-now-btn" data-activity="trekking">Book Now</a>
+                    </div>
+                </div>
+
+                <div class="activity-card">
+                    <img src="images/activity3.jpg" alt="River Rafting">
+                    <div class="activity-info">
+                        <h3>River Rafting</h3>
+                        <div class="activity-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="activity-location"><i class="fas fa-map-marker-alt"></i> Kullu, Himachal Pradesh</p>
+                        <p class="activity-description">Navigate through exciting rapids of the Beas River with professional rafting guides. Perfect for water adventure enthusiasts.</p>
+                        <div class="activity-details">
+                            <span><i class="far fa-clock"></i> 2-3 hours</span>
+                            <span><i class="fas fa-rupee-sign"></i> 1000/person</span>
+                        </div>
+                        <a href="#book-activity" class="book-now-btn" data-activity="rafting">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="book-activity" class="booking-section">
+            <h2>Book Your Adventure</h2>
+            <form action="process_activity_booking.php" method="POST" class="booking-form">
+                <div class="form-group">
+                    <label for="activity"><i class="fas fa-hiking"></i> Select Activity</label>
+                    <select name="activity" id="activity" required>
+                        <option value="">Choose an activity</option>
+                        <option value="paragliding">Paragliding</option>
+                        <option value="trekking">Trekking</option>
+                        <option value="rafting">River Rafting</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date"><i class="far fa-calendar-alt"></i> Preferred Date</label>
+                    <input type="date" name="date" id="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="participants"><i class="fas fa-users"></i> Number of Participants</label>
+                    <input type="number" name="participants" id="participants" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="name"><i class="fas fa-user"></i> Full Name</label>
+                    <input type="text" name="name" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" name="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
+                    <input type="tel" name="phone" id="phone" required>
+                </div>
+                <button type="submit" class="submit-btn"><i class="fas fa-check-circle"></i> Book Activity</button>
+            </form>
+        </section>
+
+        <section class="safety-section">
+            <h2>Safety First</h2>
+            <div class="safety-grid">
+                <div class="safety-item">
+                    <i class="fas fa-user-shield fa-3x"></i>
+                    <h3>Certified Guides</h3>
+                    <p>All our activities are conducted by certified professionals with years of experience</p>
+                </div>
+                <div class="safety-item">
+                    <i class="fas fa-first-aid fa-3x"></i>
+                    <h3>First Aid</h3>
+                    <p>Comprehensive first aid and safety equipment available at all locations</p>
+                </div>
+                <div class="safety-item">
+                    <i class="fas fa-clipboard-check fa-3x"></i>
+                    <h3>Safety Briefing</h3>
+                    <p>Detailed safety instructions and guidelines before each activity</p>
+                </div>
+                <div class="safety-item">
+                    <i class="fas fa-ambulance fa-3x"></i>
+                    <h3>Medical Support</h3>
+                    <p>Emergency medical support and evacuation services on standby</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-about">
+                <h3>About Us</h3>
+                <p>Explore the world with us. We offer the best adventure packages and unforgettable experiences.</p>
+            </div>
+
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="destinations.html">Destinations</a></li>
+                    <li><a href="activities.html">Activities</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-envelope"></i> info@rudrarides.com</p>
+                <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+            </div>
+
+            <div class="footer-social">
+                <h3>Follow Us</h3>
+                <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i> Facebook</a> |
+                <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i> Instagram</a> |
+                <a href="https://x.com/"><i class="fab fa-twitter"></i> Twitter</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Rudra Rides. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
