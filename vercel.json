@@ -1,49 +1,16 @@
 {
   "functions": {
-    "api/auth/login": {
+    "api/auth/*.php": {
       "runtime": "vercel-php@0.7.0"
     },
-    "api/auth/logout": {
+    "api/booking/*.php": {
       "runtime": "vercel-php@0.7.0"
     },
-    "api/auth/register": {
+    "api/contact/*.php": {
       "runtime": "vercel-php@0.7.0"
     },
-    "api/booking/process_booking": {
-      "runtime": "vercel-php@0.7.0"
-    },
-    "api/booking/procees_booking_activities": {
-      "runtime": "vercel-php@0.7.0"
-    },
-    "api/contact/process_contact": {
-      "runtime": "vercel-php@0.7.0"
-    },
-    "api/get_items": {
-      "runtime": "vercel-php@0.7.0"
-    },
-    "api/process_activity_booking": {
-      "runtime": "vercel-php@0.7.0"
-    },
-    "api/process_contact": {
+    "api/*.php": {
       "runtime": "vercel-php@0.7.0"
     }
-  },
-  "routes": [
-    {
-      "src": "/auth/(.*)",
-      "dest": "/api/auth/$1"
-    },
-    {
-      "src": "/booking/(.*)",
-      "dest": "/api/booking/$1"
-    },
-    {
-      "src": "/contact/(.*)",
-      "dest": "/api/contact/$1"
-    },
-    {
-      "src": "/(.*)\\.php$",
-      "dest": "/api/$1.php"
-    }
-  ]
+  }
 }
