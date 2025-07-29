@@ -11,15 +11,31 @@
     { "src": "api/process_activity_booking.php", "use": "vercel-php@0.7.0" },
     { "src": "api/process_contact.php", "use": "vercel-php@0.7.0" },
     { "src": "*.html", "use": "@vercel/static" },
-    { "src": "*.css", "use": "@vercel/static" },
-    { "src": "*.js", "use": "@vercel/static" },
-    { "src": "images/*", "use": "@vercel/static" }
+    { "src": "style.css", "use": "@vercel/static" },
+    { "src": "images/**", "use": "@vercel/static" }
   ],
   "routes": [
-    { "src": "/api/auth/(.*)", "dest": "/api/auth/$1" },
-    { "src": "/api/booking/(.*)", "dest": "/api/booking/$1" },
-    { "src": "/api/contact/(.*)", "dest": "/api/contact/$1" },
-    { "src": "/api/(.*)", "dest": "/api/$1" },
-    { "src": "/(.*)", "dest": "/$1" }
+    { "src": "/api/auth/login", "dest": "/api/auth/login.php" },
+    { "src": "/api/auth/logout", "dest": "/api/auth/logout.php" },
+    { "src": "/api/auth/register", "dest": "/api/auth/register.php" },
+    { "src": "/api/booking/procees_booking_activities", "dest": "/api/booking/procees_booking_activities.php" },
+    { "src": "/api/booking/process_booking", "dest": "/api/booking/process_booking.php" },
+    { "src": "/api/contact/process_contact", "dest": "/api/contact/process_contact.php" },
+    { "src": "/api/get_items", "dest": "/api/get_items.php" },
+    { "src": "/api/process_activity_booking", "dest": "/api/process_activity_booking.php" },
+    { "src": "/api/process_contact", "dest": "/api/process_contact.php" },
+    { "src": "/", "dest": "/index.html" },
+    { "src": "/about", "dest": "/about.html" },
+    { "src": "/activities", "dest": "/activities.html" },
+    { "src": "/booknow", "dest": "/booknow.html" },
+    { "src": "/contact", "dest": "/contact.html" },
+    { "src": "/destinations", "dest": "/destinations.html" },
+    { "src": "/hotels", "dest": "/hotels.html" },
+    { "src": "/login", "dest": "/login.html" },
+    { "src": "/signup", "dest": "/signup.html" },
+    { "src": "/style.css", "dest": "/style.css" },
+    { "src": "/images/(.*)", "dest": "/images/$1" },
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "status": 404, "dest": "/index.html" }
   ]
 }

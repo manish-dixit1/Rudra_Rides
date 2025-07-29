@@ -82,7 +82,7 @@ vercel
 - `DB_NAME` - Database name (default: rudra_rides)
 
 **Vercel Configuration**:
-The project uses Vercel's version 2 configuration format with explicit builds for each PHP file:
+The project uses Vercel's version 2 configuration format with explicit builds and detailed routing:
 
 ```json
 {
@@ -98,30 +98,56 @@ The project uses Vercel's version 2 configuration format with explicit builds fo
     { "src": "api/process_activity_booking.php", "use": "vercel-php@0.7.0" },
     { "src": "api/process_contact.php", "use": "vercel-php@0.7.0" },
     { "src": "*.html", "use": "@vercel/static" },
-    { "src": "*.css", "use": "@vercel/static" },
-    { "src": "*.js", "use": "@vercel/static" },
-    { "src": "images/*", "use": "@vercel/static" }
+    { "src": "style.css", "use": "@vercel/static" },
+    { "src": "images/**", "use": "@vercel/static" }
   ],
   "routes": [
-    { "src": "/api/auth/(.*)", "dest": "/api/auth/$1" },
-    { "src": "/api/booking/(.*)", "dest": "/api/booking/$1" },
-    { "src": "/api/contact/(.*)", "dest": "/api/contact/$1" },
-    { "src": "/api/(.*)", "dest": "/api/$1" },
-    { "src": "/(.*)", "dest": "/$1" }
+    { "src": "/api/auth/login", "dest": "/api/auth/login.php" },
+    { "src": "/api/auth/logout", "dest": "/api/auth/logout.php" },
+    { "src": "/api/auth/register", "dest": "/api/auth/register.php" },
+    { "src": "/api/booking/procees_booking_activities", "dest": "/api/booking/procees_booking_activities.php" },
+    { "src": "/api/booking/process_booking", "dest": "/api/booking/process_booking.php" },
+    { "src": "/api/contact/process_contact", "dest": "/api/contact/process_contact.php" },
+    { "src": "/api/get_items", "dest": "/api/get_items.php" },
+    { "src": "/api/process_activity_booking", "dest": "/api/process_activity_booking.php" },
+    { "src": "/api/process_contact", "dest": "/api/process_contact.php" },
+    { "src": "/", "dest": "/index.html" },
+    { "src": "/about", "dest": "/about.html" },
+    { "src": "/activities", "dest": "/activities.html" },
+    { "src": "/booknow", "dest": "/booknow.html" },
+    { "src": "/contact", "dest": "/contact.html" },
+    { "src": "/destinations", "dest": "/destinations.html" },
+    { "src": "/hotels", "dest": "/hotels.html" },
+    { "src": "/login", "dest": "/login.html" },
+    { "src": "/signup", "dest": "/signup.html" },
+    { "src": "/style.css", "dest": "/style.css" },
+    { "src": "/images/(.*)", "dest": "/images/$1" },
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "status": 404, "dest": "/index.html" }
   ]
 }
 ```
 
 ## Troubleshooting Deployment
-If you encounter the "invalid runtime" error during deployment:
-1. Use Vercel's version 2 configuration format with explicit `builds` array
-2. Specify each PHP file individually with `"use": "vercel-php@0.7.0"`
-3. Define static assets with `"use": "@vercel/static"`
-4. Create proper routing rules for each API endpoint
-5. Create a `.vercelignore` file to exclude unnecessary files
-6. Create a `.gitattributes` file to ensure proper line endings for PHP files
-7. Verify all PHP files start with `<?php` tag
-8. Check that environment variables are properly configured in Vercel dashboard
+If you encounter deployment issues:
+
+1. **For "invalid runtime" errors**:
+   - Use Vercel's version 2 configuration with explicit `builds` array
+   - Specify each PHP file individually with `"use": "vercel-php@0.7.0"`
+   - Define static assets with `"use": "@vercel/static"`
+
+2. **For 404 "DEPLOYMENT_NOT_FOUND" errors**:
+   - Create explicit route mappings for each endpoint (without .php extension in the URL)
+   - Add routes for each HTML page (without .html extension in the URL)
+   - Include a `{ "handle": "filesystem" }` directive
+   - Add a fallback route that returns a 404 status
+   - Ensure all static assets are properly included in the builds section
+
+3. **General deployment tips**:
+   - Create a `.vercelignore` file to exclude unnecessary files
+   - Create a `.gitattributes` file to ensure proper line endings
+   - Verify all PHP files start with `<?php` tag
+   - Check that environment variables are properly configured in Vercel dashboard
 
 ## Architecture
 **Frontend**: Static HTML pages with CSS styling
