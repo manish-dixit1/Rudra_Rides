@@ -1,16 +1,15 @@
 {
   "functions": {
-    "api/auth/*.php": {
-      "runtime": "vercel-php@0.7.0"
-    },
-    "api/booking/*.php": {
-      "runtime": "vercel-php@0.7.0"
-    },
-    "api/contact/*.php": {
-      "runtime": "vercel-php@0.7.0"
-    },
-    "api/*.php": {
+    "api/**/*.php": {
       "runtime": "vercel-php@0.7.0"
     }
-  }
+  },
+  "routes": [
+    { "src": "/api/(.*)\\.php", "dest": "/api/$1.php" },
+    { "src": "/(.*)\\.html", "dest": "/$1.html" },
+    { "src": "/(.*)\\.css", "dest": "/$1.css" },
+    { "src": "/(.*)\\.js", "dest": "/$1.js" },
+    { "src": "/images/(.*)", "dest": "/images/$1" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
 }
