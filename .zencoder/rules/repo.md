@@ -20,6 +20,9 @@ Rudra Rides is a travel booking platform for Himachal Pradesh tourism, offering 
 - `style.css` - Main stylesheet
 - `database.sql` - Database schema
 - `vercel.json` - Vercel deployment configuration
+- `.vercelignore` - Excludes files from Vercel deployment
+- `.gitattributes` - Ensures proper line endings for files
+- `vercel.php` - Helper file for Vercel PHP identification
 
 ## Language & Runtime
 **Language**: PHP
@@ -83,6 +86,9 @@ The project uses a specific Vercel configuration for PHP serverless functions:
 
 ```json
 {
+  "buildCommand": "echo 'No build step'",
+  "outputDirectory": ".",
+  "framework": null,
   "functions": {
     "api/**/*.php": {
       "runtime": "vercel-php@0.7.0"
@@ -102,9 +108,13 @@ The project uses a specific Vercel configuration for PHP serverless functions:
 ## Troubleshooting Deployment
 If you encounter the "invalid runtime" error during deployment:
 1. Ensure your vercel.json uses the pattern `api/**/*.php` to catch all PHP files
-2. Add proper routes configuration to handle different file types
-3. Verify all PHP files start with `<?php` tag
-4. Check that environment variables are properly configured in Vercel dashboard
+2. Add `"buildCommand": "echo 'No build step'"` and `"outputDirectory": "."` to prevent build issues
+3. Set `"framework": null` to ensure Vercel doesn't try to auto-detect the framework
+4. Create a `.vercelignore` file to exclude unnecessary files
+5. Create a `.gitattributes` file to ensure proper line endings for PHP files
+6. Add a `vercel.php` file in the root directory to help identify the project as PHP
+7. Verify all PHP files start with `<?php` tag
+8. Check that environment variables are properly configured in Vercel dashboard
 
 ## Architecture
 **Frontend**: Static HTML pages with CSS styling
